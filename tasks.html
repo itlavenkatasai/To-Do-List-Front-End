@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>create to-do-list web app</title>
+    <link rel="stylesheet" href="./tasks.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>TODO LIST</h2>
+            <h4 id="backend-error" style="color: red;"></h4>
+            <div class="logout">
+                <form id="form-logout">
+                    <a href="./login.html"><input type="button" value="LOG OUT" class="logout-button"></a>
+                </form>
+            </div>
+        </div>
+        <form class="form" id="form">
+            <div class="field-input">
+                <input type="text" id="input-todo">
+                <small>error message</small>
+            </div>
+            <div class="field-date">
+                <input type="date" id="input-date">
+                <small>error message</small>
+            </div>
+            <div class="field-button">
+                <input type="submit" value="+" id="input">
+            </div>
+        </form>
+        <div class="field-h4">
+            <h4 id="tasks-no"></h4>
+        </div>
+        <div class="field-table">
+            <table>
+                <tbody id="tbody">
+                        
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <script type="text/javascript" src="tasks.js"></script>
+</body>
+
+</html>
