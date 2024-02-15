@@ -3,6 +3,12 @@ const name = document.getElementById("name");
 const phoneNumber = document.getElementById("phonenumber");
 const password = document.getElementById("password");
 const cpassword = document.getElementById("cpassword");
+window.addEventListener('DOMContentLoaded', async () => {
+    const tokenValue = localStorage.getItem("token");
+    if (tokenValue) {
+        window.location = './tasks.html';
+    }
+});
 form.addEventListener('submit', async (event) => {
     event.preventDefault();
     validate();
@@ -44,7 +50,7 @@ async function POSTJSON(data) {
         const errorMessage = JSON.parse(error.message);
         const { message } = errorMessage;
         const showError = document.getElementById("backend-error");
-        showError.innerHTML = message+" register with another number";
+        showError.innerHTML = message + " register with another number";
         return {
             data: null,
             status: false,

@@ -20,6 +20,7 @@ body {
     max-width: 100%;
     max-height: 100%;
     background-color: white;
+    /* margin-left: 200px; */
 }
 
 .header {
@@ -28,20 +29,25 @@ body {
     padding-right: 20px;
     /* text-align: center; */
     border-bottom: 2px solid gray;
-    
+    /* height: 70px; */
     padding-top: 20px;
 }
+.header h2{
+    margin-top: -3px;
+}
 .logout {
-    padding-bottom: 20px;
+
     text-align: center;
-    margin-top: -35px;
-    margin-left: 600px;
+    /* margin-top: -35px; */
+    /* margin-top: -650px;
+    margin-left: 350px; */
+    float: right;
+    margin-top: -45px
 }
 
-.form-logout {
-    display: flex;
-}
-.logout-button{
+
+
+.logout-button {
     width: 150px;
     height: 40px;
     background-color: red;
@@ -49,14 +55,15 @@ body {
     border-radius: 20px;
     border: 2px solid red;
     font-weight: bold;
-    box-shadow: 2px 5px 2px 5px;
+    /* box-shadow: 2px 5px 2px 5px; */
 }
+
 
 .form {
     display: flex;
     padding: 30px 50px;
     margin-top: 20px;
-    
+
 }
 
 .field-input input {
@@ -119,15 +126,17 @@ body {
 }
 
 .field-h4 {
-    margin-top: -100px;
+    margin-top: -80px;
     padding: 60px;
 }
-.field-table{
+
+.field-table {
     padding: 40px 60px 20px 60px;
     margin-top: -80px;
     margin-bottom: 10px;
     justify-content: center;
 }
+
 .field-information {
     display: flex;
     margin-bottom: 10px;
@@ -142,11 +151,13 @@ body {
 .field-information p {
     width: 350px;
 }
+
 .field-information .date {
     width: 250px;
-    
+
 }
-.field-information .delete-row{
+
+.field-information .delete-row {
     width: 20px;
 }
 
@@ -163,4 +174,3 @@ body {
 .field-information i {
     color: red;
 }
-

@@ -2,6 +2,13 @@ const form = document.getElementById("form");
 const phoneNumber = document.getElementById("phonenumber");
 const password = document.getElementById("password");
 
+window.addEventListener('DOMContentLoaded', async () => {
+    const tokenValue = localStorage.getItem("token");
+    if (tokenValue) {
+        window.location = './tasks.html';
+    }
+});
+
 form.addEventListener("submit", async (event) => {
     event.preventDefault();
     validate();

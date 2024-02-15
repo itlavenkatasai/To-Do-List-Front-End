@@ -8,19 +8,20 @@
 </head>
 
 <body>
+
     <div class="container">
         <div class="header">
             <h2>TODO LIST</h2>
             <h4 id="backend-error" style="color: red;"></h4>
             <div class="logout">
                 <form id="form-logout">
-                    <a href="./login.html"><input type="button" value="LOG OUT" class="logout-button"></a>
+                    <input type="button" value="LOG OUT" class="logout-button" onclick="handleLogOut()">
                 </form>
             </div>
         </div>
         <form class="form" id="form">
             <div class="field-input">
-                <input type="text" id="input-todo">
+                <input type="text" placeholder="Enter Your Task Here" autofocus id="input-todo">
                 <small>error message</small>
             </div>
             <div class="field-date">
@@ -37,12 +38,12 @@
         <div class="field-table">
             <table>
                 <tbody id="tbody">
-                        
+
                 </tbody>
             </table>
         </div>
-
     </div>
+    
     <script type="text/javascript" src="tasks.js"></script>
 </body>
 

@@ -1,13 +1,22 @@
 const form = document.getElementById("form");
 const inputTodo = document.getElementById("input-todo");
 const inputDate = document.getElementById("input-date");
+window.onpopstate = function (event) {
+    if (event && event.state) {
+        location.reload();
+    }
+}
 window.addEventListener('DOMContentLoaded', async () => {
-    const result2 = await listTaskAPI();
+    const result2 = await listTasksAPI();
     const { status: listTaskStatus, data: { data: tasks } } = result2;
     if (listTaskStatus) {
         writeDataIntoTable(tasks);
     }
 });
+function handleLogOut() {
+    localStorage.removeItem("token");
+    window.location = './login.html';
+}
 
 form.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -28,7 +37,7 @@ form.addEventListener("submit", async (event) => {
         "status": false
     }
     await createTaskAPI(data);
-    const listResults = await listTaskAPI();
+    const listResults = await listTasksAPI();
     console.log("list", listResults)
     const { status, data: { data: tasks } } = listResults;
     if (status) {
@@ -40,7 +49,7 @@ form.addEventListener("submit", async (event) => {
 
 function writeDataIntoTable(tasks) {
     console.log("tasks write", tasks);
-    console.log(tasks.length);
+    // console.log(tasks.length);
     const body = document.getElementById('tbody');
     body.innerHTML = ' ';
     const showTasks = document.getElementById("tasks-no");
@@ -53,10 +62,10 @@ function writeDataIntoTable(tasks) {
                 <tr>
                 <td>
                     <div class="field-information">
-                        <input type="radio" id="radio" class="radio" onclick="changeStatus('${id}')">
+                        <input type="radio" id="radio" class="radio" onclick="changeStatus('${id}','no')">
                         <p>${text}</p>
                         <label class="date" id="date">${dueDate}</label>
-                        <i class="material-icons delete-icon" class="delete-row" onclick="deleteTask(this,'${id}')">delete</i>
+                        <i class="material-icons delete-icon" class="delete-row" onclick="deleteTask('${id}',)">delete</i>
                     </div>
                     </td>
                 </tr>`;
@@ -67,10 +76,10 @@ function writeDataIntoTable(tasks) {
             <tr>
             <td>
                 <div class="field-information">
-                    <input type="radio" checked id="radio" class="radio" onclick="changeStatus('${id}')">
-                    <p>${text}</p>
-                    <label class="date" id="date">${dueDate}</label>
-                    <i class="material-icons delete-icon" class="delete-row" onclick="deleteTask(this,'${id}')">delete</i>
+                    <input type="radio" checked id="radio" class="radio" onclick="changeStatus('${id}','yes')">
+                    <p><s>${text}</s></p>
+                  <label class="date" id="date"><s>${dueDate}</s></label>
+                    <i class="material-icons delete-icon" class="delete-row" onclick="deleteTask('${id}')">delete</i>
                 </div>
                 </td>
             </tr>`;
@@ -113,7 +122,7 @@ async function createTaskAPI(data) {
     }
 }
 
-async function listTaskAPI() {
+async function listTasksAPI() {
     try {
         const token = localStorage.getItem("token");
         const response = await fetch("http://localhost:3000/tasks", {
@@ -166,14 +175,14 @@ async function updateTaskAPI(data, id) {
     }
 }
 
-async function changeStatus(id) {
+async function changeStatus(id, isTicked) {
     console.log(id);
     const data = {
-        status: true
+        status: isTicked == "no" ? true: false
     }
     await updateTaskAPI(data, id);
-    const listResults = listTaskAPI();
-    const { status, data: tasks } = listResults;
+    const listResults = await listTasksAPI();
+    const { status, data: { data: tasks } } = listResults;
     if (status) {
         writeDataIntoTable(tasks);
     }
@@ -201,20 +210,13 @@ async function deleteTaskAPI(id) {
 
 }
 
-async function deleteTask(icon, id) {
-    console.log("delete task id:", id);
-    const deleteResults = await deleteTaskAPI(id);
-    const { status } = deleteResults;
+async function deleteTask(id) {
+    // console.log("delete task id:", id);
+    await deleteTaskAPI(id);
+    const listResults = await listTasksAPI();
+    const { status, data: { data: tasks } } = listResults;
     if (status) {
-        var row = icon.parentNode.parentNode; // Get the parent <tr> element
-        row.parentNode.removeChild(row); // Remove the row from the table
-        const tasksLength = await listTaskAPI();
-        const { data: tasks } = tasksLength;
-        const showTasks = document.getElementById("tasks-no");
-        showTasks.innerHTML = tasks.length + " tasks";
-    }
-    else {
-        alert('task is no deleted');
+        writeDataIntoTable(tasks);
     }
 }
 
