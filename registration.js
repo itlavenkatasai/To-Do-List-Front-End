@@ -11,7 +11,62 @@ window.addEventListener('DOMContentLoaded', async () => {
 });
 form.addEventListener('submit', async (event) => {
     event.preventDefault();
-    validate();
+    const nameValue = name.value.trim();
+    const phoneNumberValue = phoneNumber.value.trim();
+    const passwordValue = password.value.trim();
+    const cpasswordValue = cpassword.value.trim();
+    let error = false;
+
+    if (nameValue === '') {
+        setError(name, 'name value cannot be empty');
+        error = true;
+    }
+    else if (nameValue.length < 3) {
+        setError(name, 'name length minimum 3 characters');
+        error = true;
+    }
+    else {
+        setSuccess(name);
+    }
+
+    if (phoneNumberValue === '') {
+        setError(phoneNumber, 'phonenumber value cannot be empty');
+        error = true;
+    }
+    else if (phoneNumberValue.length < 10) {
+        setError(phoneNumber, 'phoneNumber must have 10 numbers');
+        error = true;
+    }
+    else {
+        setSuccess(phoneNumber);
+    }
+
+    if (passwordValue === '') {
+        setError(password, 'password cannot be empty');
+        error = true;
+    }
+    else if (passwordValue.length < 6) {
+        setError(password, 'password value must have 6 characters');
+        error = true;
+    }
+    else {
+        setSuccess(password);
+    }
+
+    if (cpasswordValue === '') {
+        setError(cpassword, 'Confirm Password cannot be empty');
+        error = true;
+    }
+    else if (cpasswordValue != passwordValue) {
+        setError(cpassword, 'confirm passsword match with above password');
+        error = true;
+    }
+    else {
+        setSuccess(cpassword);
+    }
+    if (error) {
+        return false;
+    }
     const data = {
         name: name.value,
         phoneNumber: phoneNumber.value,
@@ -57,53 +112,6 @@ async function POSTJSON(data) {
             error: message
         }
     }
-}
-function validate() {
-    const nameValue = name.value.trim();
-    const phoneNumberValue = phoneNumber.value.trim();
-    const passwordValue = password.value.trim();
-    const cpasswordValue = cpassword.value.trim();
-
-    if (nameValue === '') {
-        setError(name, 'name value cannot be empty');
-    }
-    else if (nameValue.length < 3) {
-        setError(name, 'name length minimum 3 characters');
-    }
-    else {
-        setSuccess(name);
-    }
-
-    if (phoneNumberValue === '') {
-        setError(phoneNumber, 'phonenumber value cannot be empty');
-    }
-    else if (phoneNumberValue.length < 10) {
-        setError(phoneNumber, 'phoneNumber must have 10 numbers');
-    }
-    else {
-        setSuccess(phoneNumber);
-    }
-
-    if (passwordValue === '') {
-        setError(password, 'password cannot be empty');
-    }
-    else if (passwordValue.length < 6) {
-        setError(password, 'password value must have 6 characters');
-    }
-    else {
-        setSuccess(password);
-    }
-
-    if (cpasswordValue === '') {
-        setError(cpassword, 'Confirm Password cannot be empty');
-    }
-    else if (cpasswordValue != passwordValue) {
-        setError(cpassword, 'confirm passsword match with above password');
-    }
-    else {
-        setSuccess(cpassword);
-    }
-
 }
 
 function setError(input, message) {
