@@ -33,9 +33,11 @@ body {
     border-bottom: 2px solid gray;
     font-weight: bold;
 }
-.header h2{
+.header p{
     margin-top: 10px;
     color: #fb5607;
+    font-weight: bold;
+    font-size: 40px;
 }
 
 .field {

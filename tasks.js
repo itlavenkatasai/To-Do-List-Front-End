@@ -1,11 +1,13 @@
 const form = document.getElementById("form");
 const inputTodo = document.getElementById("input-todo");
 const inputDate = document.getElementById("input-date");
+
 window.onpopstate = function (event) {
     if (event && event.state) {
         location.reload();
     }
 }
+
 window.addEventListener('DOMContentLoaded', async () => {
     const result2 = await listTasksAPI();
     const { status: listTaskStatus, data: { data: tasks } } = result2;
@@ -13,6 +15,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         writeDataIntoTable(tasks);
     }
 });
+
 function handleLogOut() {
     localStorage.removeItem("token");
     window.location = './login.html';
@@ -153,6 +156,7 @@ async function listTasksAPI() {
         }
     }
 }
+
 async function updateTaskAPI(data, id) {
     try {
         const token = localStorage.getItem("token");
@@ -227,6 +231,7 @@ function setError(input, message) {
     parent.classList.add("error");
     parent.classList.remove("success");
 }
+
 function setSuccess(input) {
     const parent = input.parentElement;
     parent.classList.remove("error");
