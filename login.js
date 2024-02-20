@@ -12,6 +12,11 @@ window.addEventListener('DOMContentLoaded', async () => {
 form.addEventListener("submit", async (event) => {
     event.preventDefault();
     validate();
+    const showSuccess = document.getElementById("showError");
+    showSuccess.innerHTML = "User Login Successfully";
+    showSuccess.style.color = "#2ecc71";
+    showSuccess.style.fontSize = "30px";
+    showSuccess.style.fontWeight = "bold";
     const data = {
         phoneNumber: phoneNumber.value,
         password: password.value
@@ -22,9 +27,11 @@ form.addEventListener("submit", async (event) => {
     console.log(token);
     localStorage.setItem("token", token);
     const { status } = loginResult;
-    if (status) {
-        window.location = './tasks.html';
-    }
+    setTimeout(() => {
+        if (status) {
+            window.location = './tasks.html';
+        }
+    }, 2000);
 });
 
 async function POSTJSON(data) {

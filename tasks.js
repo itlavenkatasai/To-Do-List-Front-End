@@ -39,10 +39,22 @@ form.addEventListener("submit", async (event) => {
         "dueDate": inputDate.value,
         "status": false
     }
+    const showSuccess = document.getElementById("backend-error");
+    showSuccess.innerHTML = '';
+    showSuccess.innerHTML = "To-Do Created Successfully";
+    showSuccess.style.display = 'block';
+    showSuccess.style.color = "#2ecc71";
+    showSuccess.style.fontSize = "30px";
+    showSuccess.style.fontWeight = "bold";
+    setTimeout(() => {
+        const showSuccess = document.getElementById("backend-error");
+        showSuccess.style.display = "none";
+    }, 2000);
     await createTaskAPI(data);
     const listResults = await listTasksAPI();
     console.log("list", listResults)
     const { status, data: { data: tasks } } = listResults;
+
     if (status) {
         writeDataIntoTable(tasks);
         inputTodo.value = '';
@@ -182,13 +194,39 @@ async function updateTaskAPI(data, id) {
 async function changeStatus(id, isTicked) {
     console.log(id);
     const data = {
-        status: isTicked == "no" ? true: false
+        status: isTicked == "no" ? true : false
     }
     await updateTaskAPI(data, id);
     const listResults = await listTasksAPI();
     const { status, data: { data: tasks } } = listResults;
     if (status) {
         writeDataIntoTable(tasks);
+        if (data.status) {
+            const showSuccess = document.getElementById("backend-error");
+            showSuccess.innerHTML = '';
+            showSuccess.innerHTML = "To-Do is Completed Successfully";
+            showSuccess.style.display = 'block';
+            showSuccess.style.color = "#2ecc71";
+            showSuccess.style.fontSize = "30px";
+            showSuccess.style.fontWeight = "bold";
+            setTimeout(() => {
+                const showSuccess = document.getElementById("backend-error");
+                showSuccess.style.display = "none";
+            }, 2000);
+        }
+        if (!data.status) {
+            const showSuccess = document.getElementById("backend-error");
+            showSuccess.innerHTML = '';
+            showSuccess.innerHTML = "To-Do is Not Completed";
+            showSuccess.style.display = 'block';
+            showSuccess.style.color = "#e74c3c";
+            showSuccess.style.fontSize = "30px";
+            showSuccess.style.fontWeight = "bold";
+            setTimeout(() => {
+                const showSuccess = document.getElementById("backend-error");
+                showSuccess.style.display = "none";
+            }, 2000);
+        }
     }
 }
 
@@ -221,6 +259,17 @@ async function deleteTask(id) {
     const { status, data: { data: tasks } } = listResults;
     if (status) {
         writeDataIntoTable(tasks);
+        const showSuccess = document.getElementById("backend-error");
+        showSuccess.innerHTML = '';
+        showSuccess.innerHTML = "To-Do Deleted Successfully";
+        showSuccess.style.display = 'block';
+        showSuccess.style.color = "#e74c3c";
+        showSuccess.style.fontSize = "30px";
+        showSuccess.style.fontWeight = "bold";
+        setTimeout(() => {
+            const showSuccess = document.getElementById("backend-error");
+            showSuccess.style.display = "none";
+        }, 2000);
     }
 }
 

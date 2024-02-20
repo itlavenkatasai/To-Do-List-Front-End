@@ -73,11 +73,19 @@ form.addEventListener('submit', async (event) => {
         password: password.value,
         confirmPassword: cpassword.value
     }
+    const showError = document.getElementById("backend-error");
+    showError.innerHTML = "User Registration Successfully";
+    showError.style.color = "#2ecc71";
+    showError.style.fontSize = "30px";
+    showError.style.fontWeight = "bold";
     const resultsRegister = await POSTJSON(data);
     const { status } = resultsRegister;
-    if (status) {
-        window.location = './login.html';
-    }
+    setTimeout(() => {
+        if (status) {
+            window.location = './login.html';
+        }
+    }, 2000);
+
 });
 
 async function POSTJSON(data) {
@@ -106,6 +114,7 @@ async function POSTJSON(data) {
         const { message } = errorMessage;
         const showError = document.getElementById("backend-error");
         showError.innerHTML = message + " register with another number";
+        showError.style.color = "red";
         return {
             data: null,
             status: false,

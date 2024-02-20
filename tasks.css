@@ -30,7 +30,8 @@ body {
     /* text-align: center; */
     border-bottom: 2px solid gray;
     /* height: 70px; */
-    padding-top: 20px;
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
 .header h2{
     margin-top: -3px;
