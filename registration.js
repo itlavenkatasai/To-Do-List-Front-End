@@ -74,7 +74,7 @@ form.addEventListener('submit', async (event) => {
         confirmPassword: cpassword.value
     }
     const showError = document.getElementById("backend-error");
-    showError.innerHTML = "User Registration Successfully";
+    showError.innerHTML = "Your registration is successful";
     showError.style.color = "#2ecc71";
     showError.style.fontSize = "30px";
     showError.style.fontWeight = "bold";

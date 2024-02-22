@@ -34,7 +34,11 @@ body {
     padding-bottom: 30px;
 }
 .header h2{
-    margin-top: -3px;
+    margin-top: -2px;
+}
+#backend-error{
+    text-align: center;
+    padding-top: 10px;
 }
 .logout {
 
@@ -150,11 +154,11 @@ body {
 }
 
 .field-information p {
-    width: 350px;
+    width: 450px;
 }
 
 .field-information .date {
-    width: 250px;
+    width: 150px;
 
 }
 

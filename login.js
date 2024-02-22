@@ -13,7 +13,7 @@ form.addEventListener("submit", async (event) => {
     event.preventDefault();
     validate();
     const showSuccess = document.getElementById("showError");
-    showSuccess.innerHTML = "User Login Successfully";
+    showSuccess.innerHTML = "Login successful";
     showSuccess.style.color = "#2ecc71";
     showSuccess.style.fontSize = "30px";
     showSuccess.style.fontWeight = "bold";

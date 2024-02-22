@@ -39,9 +39,10 @@ form.addEventListener("submit", async (event) => {
         "dueDate": inputDate.value,
         "status": false
     }
+    console.log(data.dueDate);
     const showSuccess = document.getElementById("backend-error");
     showSuccess.innerHTML = '';
-    showSuccess.innerHTML = "To-Do Created Successfully";
+    showSuccess.innerHTML = "New task created successfully";
     showSuccess.style.display = 'block';
     showSuccess.style.color = "#2ecc71";
     showSuccess.style.fontSize = "30px";
@@ -64,7 +65,6 @@ form.addEventListener("submit", async (event) => {
 
 function writeDataIntoTable(tasks) {
     console.log("tasks write", tasks);
-    // console.log(tasks.length);
     const body = document.getElementById('tbody');
     body.innerHTML = ' ';
     const showTasks = document.getElementById("tasks-no");
@@ -72,6 +72,12 @@ function writeDataIntoTable(tasks) {
     for (let i = 0; i < tasks.length; i++) {
         const task = tasks[i];
         const { text, dueDate, status, _id: id } = task;
+        const date = new Date(dueDate);
+        const y = date.getFullYear();
+        const m = String(date.getMonth() + 1).padStart(2, '0'); // Adding leading zero to month
+        const d = String(date.getDate()).padStart(2, '0');      // Adding leading zero to date
+        const format = d + "-" + m + "-" + y;
+        task.dueDate = format;
         if (!status) {
             const tr = `
                 <tr>
@@ -79,7 +85,7 @@ function writeDataIntoTable(tasks) {
                     <div class="field-information">
                         <input type="radio" id="radio" class="radio" onclick="changeStatus('${id}','no')">
                         <p>${text}</p>
-                        <label class="date" id="date">${dueDate}</label>
+                        <label class="date" id="date">${task.dueDate}</label>
                         <i class="material-icons delete-icon" class="delete-row" onclick="deleteTask('${id}',)">delete</i>
                     </div>
                     </td>
@@ -93,7 +99,7 @@ function writeDataIntoTable(tasks) {
                 <div class="field-information">
                     <input type="radio" checked id="radio" class="radio" onclick="changeStatus('${id}','yes')">
                     <p><s>${text}</s></p>
-                  <label class="date" id="date"><s>${dueDate}</s></label>
+                  <label class="date" id="date"><s>${task.dueDate}</s></label>
                     <i class="material-icons delete-icon" class="delete-row" onclick="deleteTask('${id}')">delete</i>
                 </div>
                 </td>
@@ -204,7 +210,7 @@ async function changeStatus(id, isTicked) {
         if (data.status) {
             const showSuccess = document.getElementById("backend-error");
             showSuccess.innerHTML = '';
-            showSuccess.innerHTML = "To-Do is Completed Successfully";
+            showSuccess.innerHTML = "Task marked as a completed successfully";
             showSuccess.style.display = 'block';
             showSuccess.style.color = "#2ecc71";
             showSuccess.style.fontSize = "30px";
@@ -217,7 +223,7 @@ async function changeStatus(id, isTicked) {
         if (!data.status) {
             const showSuccess = document.getElementById("backend-error");
             showSuccess.innerHTML = '';
-            showSuccess.innerHTML = "To-Do is Not Completed";
+            showSuccess.innerHTML = "Task status reverted to pending successfull";
             showSuccess.style.display = 'block';
             showSuccess.style.color = "#e74c3c";
             showSuccess.style.fontSize = "30px";
@@ -261,7 +267,7 @@ async function deleteTask(id) {
         writeDataIntoTable(tasks);
         const showSuccess = document.getElementById("backend-error");
         showSuccess.innerHTML = '';
-        showSuccess.innerHTML = "To-Do Deleted Successfully";
+        showSuccess.innerHTML = "Task deleted successfully";
         showSuccess.style.display = 'block';
         showSuccess.style.color = "#e74c3c";
         showSuccess.style.fontSize = "30px";
