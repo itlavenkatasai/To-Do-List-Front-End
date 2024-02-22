@@ -1,11 +1,8 @@
-# To-Do List Front End
+# 🔍 Project Name: ToDo Website - Frontend
 
      This application is mainly used to create to-do list app web interface.
      Here users can create their own to-do tasks and can track them.
 
-     🚀 Excited to share my latest project!
-
-🔍 Project Name: ToDo Website - Frontend
 
 📌 Description: This repository contains the frontend code for the ToDo website, a full-stack web application built using HTML, CSS, and JavaScript. The frontend provides users with a user-friendly interface to manage their tasks efficiently, featuring user registration, login functionality, and a ToDo list interface.
 
