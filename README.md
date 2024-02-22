@@ -1,4 +1,4 @@
-# 🔍 Project Name: ToDo Website - Frontend
+# 🔍 Project Name: To-Do List Website - Frontend
 
      This application is mainly used to create to-do list app web interface.
      Here users can create their own to-do tasks and can track them.
