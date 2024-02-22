@@ -33,8 +33,6 @@ CSS: Utilized for styling and layout design.
 JavaScript: Employed for dynamic interactions and client-side validations.
 📈 Results: The frontend repository contributed to the overall success of the ToDo website project by providing a visually appealing and intuitive user interface, enhancing user engagement and satisfaction.
 
-🔊 Looking for: Feedback on UI/UX design, collaboration opportunities for frontend development tasks, suggestions for improvement.
-
 🙏 Would love to hear your thoughts and feedback!
   
 ## How to run
