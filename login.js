@@ -1,5 +1,5 @@
-//const locaMongolUrl = 'http://localhost:3000';
-const publicMongoUrl = 'https://to-do-list-back-end-qjw5.onrender.com';
+const env = "PROD";
+const publicMongoUrl = env === 'PROD' ? 'https://to-do-list-back-end-qjw5.onrender.com' : 'http://localhost:3000';
 const form = document.getElementById("form");
 const phoneNumber = document.getElementById("phonenumber");
 const password = document.getElementById("password");
