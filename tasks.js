@@ -52,7 +52,7 @@ form.addEventListener("submit", async (event) => {
     setTimeout(() => {
         const showSuccess = document.getElementById("backend-error");
         showSuccess.style.display = "none";
-    }, 2000);
+    }, 1000);
     await createTaskAPI(data);
     const listResults = await listTasksAPI();
     console.log("list", listResults)
@@ -233,7 +233,7 @@ async function changeStatus(id, isTicked) {
             setTimeout(() => {
                 const showSuccess = document.getElementById("backend-error");
                 showSuccess.style.display = "none";
-            }, 2000);
+            }, 1000);
         }
     }
 }
@@ -277,7 +277,7 @@ async function deleteTask(id) {
         setTimeout(() => {
             const showSuccess = document.getElementById("backend-error");
             showSuccess.style.display = "none";
-        }, 2000);
+        }, 1000);
     }
 }
 
