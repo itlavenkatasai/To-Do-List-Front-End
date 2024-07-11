@@ -1,5 +1,5 @@
-const env = "PROD";
-const publicMongoUrl = env === 'PROD' ? 'https://to-do-list-back-end-qjw5.onrender.com' : 'http://localhost:3000';
+// const env = 'PROD';
+const publicMongoUrl = 'https://to-do-list-back-end-qjw5.onrender.com';
 
 const form = document.getElementById("form");
 const name = document.getElementById("name");
