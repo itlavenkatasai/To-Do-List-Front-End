@@ -86,7 +86,7 @@ form.addEventListener('submit', async (event) => {
         if (status) {
             window.location = './login.html';
         }
-    }, 2000);
+    }, 1000);
 
 });
 

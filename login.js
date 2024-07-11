@@ -33,7 +33,7 @@ form.addEventListener("submit", async (event) => {
         if (status) {
             window.location = './tasks.html';
         }
-    }, 2000);
+    }, 1000);
 });
 
 async function POSTJSON(data) {
