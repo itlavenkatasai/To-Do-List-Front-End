@@ -1,3 +1,5 @@
+//const locaMongolUrl = 'http://localhost:3000';
+const publicMongoUrl = 'https://to-do-list-back-end-qjw5.onrender.com';
 const form = document.getElementById("form");
 const name = document.getElementById("name");
 const phoneNumber = document.getElementById("phonenumber");
@@ -90,7 +92,7 @@ form.addEventListener('submit', async (event) => {
 
 async function POSTJSON(data) {
     try {
-        const response = await fetch('http://localhost:3000/register', {
+        const response = await fetch(`${publicMongoUrl}/register`, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"

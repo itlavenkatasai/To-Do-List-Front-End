@@ -1,3 +1,5 @@
+//const locaMongolUrl = 'http://localhost:3000';
+const publicMongoUrl = 'https://to-do-list-back-end-qjw5.onrender.com';
 const form = document.getElementById("form");
 const inputTodo = document.getElementById("input-todo");
 const inputDate = document.getElementById("input-date");
@@ -112,7 +114,7 @@ function writeDataIntoTable(tasks) {
 async function createTaskAPI(data) {
     try {
         const token = localStorage.getItem('token');
-        const response = await fetch("http://localhost:3000/tasks", {
+        const response = await fetch(`${publicMongoUrl}/tasks`, {
             method: "POST",
             headers: {
                 "Content-Type": "Application/json",
@@ -146,7 +148,7 @@ async function createTaskAPI(data) {
 async function listTasksAPI() {
     try {
         const token = localStorage.getItem("token");
-        const response = await fetch("http://localhost:3000/tasks", {
+        const response = await fetch(`${publicMongoUrl}/tasks`, {
             method: "GET",
             headers: {
                 "Authorization": `Bearer ${token}`
@@ -178,7 +180,7 @@ async function listTasksAPI() {
 async function updateTaskAPI(data, id) {
     try {
         const token = localStorage.getItem("token");
-        const response = await fetch(`http://localhost:3000/tasks/${id}`, {
+        const response = await fetch(`${publicMongoUrl}/tasks/${id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "Application/json",
@@ -239,7 +241,7 @@ async function changeStatus(id, isTicked) {
 async function deleteTaskAPI(id) {
     try {
         const token = localStorage.getItem("token");
-        const response = await fetch(`http://localhost:3000/tasks/${id}`, {
+        const response = await fetch(`${publicMongoUrl}/${id}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "Application/json",
